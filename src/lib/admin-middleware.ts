@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server"
 import { cookies } from "next/headers"
 import { verifyAdminToken, AdminPayload } from "./admin-auth"
 

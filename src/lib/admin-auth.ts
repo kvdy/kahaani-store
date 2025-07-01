@@ -19,7 +19,7 @@ export async function verifyAdminToken(token: string): Promise<AdminPayload | nu
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as AdminPayload
     return decoded
-  } catch (error: any) {
+  } catch {
     return null
   }
 }

@@ -4,7 +4,16 @@ import FacebookProvider from "next-auth/providers/facebook"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { prisma } from "./prisma"
-import bcrypt from "bcryptjs"
+
+// Extended user type for custom properties
+interface ExtendedUser {
+  id?: string
+  name?: string | null
+  email?: string | null
+  image?: string | null
+  role?: string
+  phone?: string
+}
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -80,16 +89,20 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = user.role
-        token.phone = user.phone
+        // Type assertion for custom user properties
+        const customUser = user as ExtendedUser
+        token.role = customUser.role
+        token.phone = customUser.phone
       }
       return token
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.sub!
-        session.user.role = token.role as string
-        session.user.phone = token.phone as string
+        // Type assertion for custom session properties
+        const customUser = session.user as ExtendedUser
+        customUser.id = token.sub!
+        customUser.role = token.role as string
+        customUser.phone = token.phone as string
       }
       return session
     }

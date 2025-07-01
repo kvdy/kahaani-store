@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "db:deploy": "prisma db push && node scripts/deploy-db.js",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",

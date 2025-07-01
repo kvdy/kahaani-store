@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { signIn, getSession } from "next-auth/react"
+import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -36,7 +36,7 @@ export default function SignIn() {
       } else {
         setError(data.error || "Failed to send OTP")
       }
-    } catch (error) {
+    } catch {
       setError("Network error. Please try again.")
     } finally {
       setLoading(false)
@@ -60,7 +60,7 @@ export default function SignIn() {
       } else {
         router.push("/")
       }
-    } catch (error) {
+    } catch {
       setError("Verification failed. Please try again.")
     } finally {
       setLoading(false)
@@ -71,7 +71,7 @@ export default function SignIn() {
     setLoading(true)
     try {
       await signIn(provider, { callbackUrl: "/" })
-    } catch (error) {
+    } catch {
       setError(`Failed to sign in with ${provider}`)
       setLoading(false)
     }

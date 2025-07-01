@@ -30,7 +30,7 @@ export default function AdminLogin() {
       } else {
         setError(data.error || "Login failed")
       }
-    } catch (error) {
+    } catch {
       setError("Network error. Please try again.")
     } finally {
       setLoading(false)

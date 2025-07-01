@@ -14,7 +14,7 @@ export interface AdminPayload {
 export async function verifyAdminTokenEdge(token: string): Promise<AdminPayload | null> {
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET)
-    return payload as AdminPayload
+    return payload as unknown as AdminPayload
   } catch (error) {
     console.log("Edge JWT verification failed:", error)
     return null
@@ -22,7 +22,7 @@ export async function verifyAdminTokenEdge(token: string): Promise<AdminPayload 
 }
 
 export async function signAdminTokenEdge(admin: AdminPayload): Promise<string> {
-  return await new SignJWT(admin)
+  return await new SignJWT(admin as unknown as Record<string, unknown>)
     .setProtectedHeader({ alg: 'HS256' })
     .setExpirationTime('24h')
     .sign(JWT_SECRET)
