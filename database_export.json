@@ -1,0 +1,18 @@
+{
+  "admins": [
+    {
+      "id": "cmck7ysbk00001lwyynngmj1w",
+      "username": "admin@kahaanibyrangasuta.com",
+      "email": "admin@kahaanibyrangasuta.com",
+      "password": "$2b$12$tZmoRk2elsxDfN.R4QzYme3oitEsXxkcWxA.DMjGCkhZoznyn8jJW",
+      "name": "Kahaani Admin",
+      "isActive": true,
+      "role": "SUPER_ADMIN",
+      "createdAt": "2025-07-01T07:41:41.984Z",
+      "updatedAt": "2025-07-01T07:41:41.984Z"
+    }
+  ],
+  "users": [],
+  "otpCodes": [],
+  "exportedAt": "2025-07-01T09:26:48.006Z"
+}
